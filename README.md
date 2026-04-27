@@ -26,11 +26,13 @@ This is MCP-inspired tool orchestration inside the browser extension: gather con
 
 ## Install for Testing
 
-1. Start your local model server.
-2. Open `chrome://extensions` or `edge://extensions`.
-3. Enable Developer mode.
-4. Click **Load unpacked** and select `extension`.
-5. In BOBOI settings, confirm:
+1. Clone or download this repository.
+2. Start your local model server.
+3. Open `chrome://extensions` or `edge://extensions`.
+4. Enable Developer mode.
+5. Click **Load unpacked**.
+6. Select the repository's `extension` folder.
+7. In BOBOI settings, confirm:
    - Local server URL: `http://127.0.0.1:1234`
    - Model: `google/gemma-4-e4b`
 
@@ -84,4 +86,12 @@ Server logs are written to:
 
 ```text
 logs\boboi-tts.log
+```
+
+## Packaging
+
+The generated zip is intentionally ignored by Git. Users can install directly from the `extension` folder after cloning. If a zip is needed, create one from the repository root:
+
+```powershell
+Compress-Archive -Path extension\*, tools\*, voices\*, README.md, SETUP.md -DestinationPath BOBOI-Screen-Pal-extension.zip -Force
 ```

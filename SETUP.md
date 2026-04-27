@@ -24,19 +24,20 @@ Your local server should support an OpenAI-compatible chat completions API.
 
 ## 2. Install the Extension in Chrome or Edge
 
-1. Open Chrome or Edge.
-2. Go to one of these pages:
+1. Clone or download this repository.
+2. Open Chrome or Edge.
+3. Go to one of these pages:
    - Chrome: `chrome://extensions`
    - Edge: `edge://extensions`
-3. Turn on **Developer mode**.
-4. Click **Load unpacked**.
-5. Select this folder:
+4. Turn on **Developer mode**.
+5. Click **Load unpacked**.
+6. Select the `extension` folder inside the repository.
 
 ```text
-C:\Users\marun\Documents\git\BOBOI\extension
+extension
 ```
 
-6. BOBOI Screen Pal should now appear in your extensions list.
+7. BOBOI Screen Pal should now appear in your extensions list.
 
 ## 3. Configure BOBOI
 
@@ -172,12 +173,14 @@ Some browser pages cannot run extensions, including:
 
 Test on a normal website instead.
 
-## 9. Packaged File
+## 9. Packaging
 
-The packaged zip is here:
+The generated zip file is ignored by Git. Users can install directly from the `extension` folder after cloning.
 
-```text
-C:\Users\marun\Documents\git\BOBOI\BOBOI-Screen-Pal-extension.zip
+If you need a zip, create one from the repository root:
+
+```powershell
+Compress-Archive -Path extension\*, tools\*, voices\*, README.md, SETUP.md -DestinationPath BOBOI-Screen-Pal-extension.zip -Force
 ```
 
-For local testing, use **Load unpacked** with the `extension` folder. The zip is useful for sharing or backup.
+For local testing, prefer **Load unpacked** with the `extension` folder.

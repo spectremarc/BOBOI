@@ -1,0 +1,39 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Logs and runtime output
+logs/
+*.log
+tts-test*.wav
+tts-healthcheck*.wav
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Node/local package output if tooling is added later
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Extension/package build artifacts
+*.crx
+*.pem
+BOBOI-Screen-Pal-extension.zip
+
+# Temporary files
+tmp/
+temp/
+*.tmp
