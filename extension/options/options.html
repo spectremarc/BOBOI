@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BOBOI Settings</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main class="settings-shell">
+      <section class="settings-panel">
+        <div class="brand">
+          <img src="../assets/boboi-mascot.png" alt="">
+          <div>
+            <h1>BOBOI Screen Pal</h1>
+            <p>Connect a local OpenAI-compatible model server and tune the companion personality.</p>
+          </div>
+        </div>
+
+        <label>
+          <span>Local server URL</span>
+          <input id="localServerUrl" type="url" autocomplete="off" placeholder="http://127.0.0.1:1234">
+        </label>
+
+        <label>
+          <span>Model</span>
+          <input id="model" type="text" autocomplete="off" placeholder="google/gemma-4-e4b">
+        </label>
+
+        <label>
+          <span>Local TTS server URL optional</span>
+          <input id="ttsServerUrl" type="url" autocomplete="off" placeholder="http://127.0.0.1:5505/tts">
+        </label>
+
+        <label>
+          <span>TTS voice</span>
+          <select id="ttsVoice">
+            <option value="">Default voice</option>
+          </select>
+        </label>
+
+        <button id="refreshVoices" class="secondary-button" type="button">Refresh voices</button>
+
+        <label>
+          <span>AI skill</span>
+          <textarea id="aiSkills" rows="6" placeholder="Act cute. Call me boboi. Keep answers short."></textarea>
+        </label>
+
+        <div class="switch-row">
+          <label class="switch">
+            <input id="autoScreenshot" type="checkbox">
+            <span>Send visible tab screenshot with each question</span>
+          </label>
+          <label class="switch">
+            <input id="includePageContext" type="checkbox">
+            <span>Send page title, URL, selected text, and visible text</span>
+          </label>
+          <label class="switch">
+            <input id="liveContext" type="checkbox">
+            <span>Refresh screen context every 10 seconds while tab is visible</span>
+          </label>
+          <label class="switch">
+            <input id="voiceEnabled" type="checkbox">
+            <span>Enable voice controls</span>
+          </label>
+        </div>
+
+        <button id="save" type="button">Save settings</button>
+        <p id="status" role="status"></p>
+      </section>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

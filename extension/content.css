@@ -1,0 +1,342 @@
+#boboi-root {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2147483647;
+  width: min(300px, calc(100vw - 24px));
+  height: 212px;
+  color: #15161a;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0;
+  pointer-events: auto;
+}
+
+#boboi-root,
+#boboi-root * {
+  box-sizing: border-box;
+}
+
+.boboi-stage {
+  position: relative;
+  height: 100%;
+  display: grid;
+  align-content: end;
+  justify-items: end;
+  gap: 8px;
+  filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.24));
+}
+
+.boboi-panels {
+  position: absolute;
+  right: 0;
+  bottom: 204px;
+  width: 100%;
+  display: grid;
+  gap: 8px;
+}
+
+.boboi-character {
+  position: relative;
+  width: 132px;
+  height: 156px;
+  opacity: 0.86;
+  cursor: grab;
+  user-select: none;
+  animation: boboi-float 4.2s ease-in-out infinite;
+}
+
+.boboi-character:active {
+  cursor: grabbing;
+}
+
+.boboi-character img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.boboi-prop {
+  position: absolute;
+  right: -4px;
+  bottom: 30px;
+  min-width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.66);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 28px rgba(24, 30, 40, 0.18);
+  font-size: 22px;
+  opacity: 0;
+  transform: translateY(8px) rotate(-6deg);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.boboi-character[data-mood="thinking"] .boboi-prop,
+.boboi-character[data-mood="searching"] .boboi-prop,
+.boboi-character[data-mood="calling"] .boboi-prop {
+  opacity: 1;
+  transform: translateY(0) rotate(-6deg);
+}
+
+.boboi-character[data-mood="thinking"] .boboi-prop::before {
+  content: "...";
+  font-weight: 800;
+  color: #4f46e5;
+}
+
+.boboi-character[data-mood="searching"] .boboi-prop::before {
+  content: "BOOK";
+  font-size: 12px;
+  font-weight: 900;
+  color: #7c3aed;
+}
+
+.boboi-character[data-mood="calling"] .boboi-prop::before {
+  content: "CALL";
+  font-size: 12px;
+  font-weight: 900;
+  color: #0f766e;
+}
+
+.boboi-bubble {
+  justify-self: end;
+  width: 100%;
+  max-height: min(240px, calc(100vh - 260px));
+  overflow: hidden;
+  padding: 12px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.74);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 44px rgba(24, 30, 40, 0.18);
+  font-size: 13px;
+  line-height: 1.42;
+}
+
+.boboi-bubble.is-expanded {
+  max-height: min(520px, calc(100vh - 260px));
+  overflow: auto;
+}
+
+.boboi-message {
+  max-height: 126px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow: hidden;
+}
+
+.boboi-bubble.is-expanded .boboi-message {
+  max-height: none;
+  overflow: visible;
+}
+
+.boboi-see-more {
+  margin-top: 8px;
+  min-height: 30px;
+  border: 0;
+  border-radius: 10px;
+  padding: 0 12px;
+  background: rgba(36, 87, 214, 0.9);
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.boboi-bubble[hidden],
+.boboi-chat[hidden] {
+  display: none;
+}
+
+.boboi-controls {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+.boboi-icon-button {
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(18px);
+  color: #15161a;
+  box-shadow: 0 12px 28px rgba(24, 30, 40, 0.16);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.boboi-icon-button:hover {
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.boboi-mic {
+  position: relative;
+  width: 38px;
+  min-width: 38px;
+  padding: 0;
+  color: #ffffff;
+}
+
+.boboi-drag {
+  position: relative;
+  width: 38px;
+  min-width: 38px;
+  padding: 0;
+  cursor: grab;
+}
+
+.boboi-drag:active {
+  cursor: grabbing;
+}
+
+.boboi-drag::before,
+.boboi-drag::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  box-shadow: 0 6px 0 currentColor;
+}
+
+.boboi-drag::before {
+  top: 12px;
+}
+
+.boboi-drag::after {
+  top: 18px;
+}
+
+.boboi-close {
+  width: 38px;
+  min-width: 38px;
+  padding: 0;
+  color: #ffffff;
+  background: rgba(31, 41, 55, 0.74);
+  font-size: 20px;
+}
+
+.boboi-mic::before {
+  content: "";
+  width: 10px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-radius: 8px;
+  border-bottom-width: 3px;
+}
+
+.boboi-mic::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  width: 16px;
+  height: 9px;
+  border: 2px solid currentColor;
+  border-top: 0;
+  border-radius: 0 0 12px 12px;
+  transform: translateX(-50%);
+}
+
+.boboi-mic.is-on {
+  border-color: rgba(22, 163, 74, 0.45);
+  background: rgba(22, 163, 74, 0.84);
+}
+
+.boboi-mic.is-off {
+  border-color: rgba(220, 38, 38, 0.45);
+  background: rgba(220, 38, 38, 0.84);
+}
+
+.boboi-chat {
+  width: 100%;
+  max-height: min(260px, calc(100vh - 260px));
+  padding: 10px;
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 44px rgba(24, 30, 40, 0.2);
+}
+
+.boboi-chat textarea {
+  width: 100%;
+  min-height: 70px;
+  max-height: 150px;
+  resize: vertical;
+  border: 1px solid rgba(21, 22, 26, 0.12);
+  border-radius: 12px;
+  padding: 10px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.74);
+  color: #15161a;
+  font: inherit;
+}
+
+.boboi-chat textarea:focus {
+  border-color: rgba(79, 70, 229, 0.56);
+}
+
+.boboi-send-button {
+  width: 100%;
+  min-height: 38px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(148, 163, 184, 0.74);
+  color: #ffffff;
+  cursor: not-allowed;
+  font: inherit;
+  font-weight: 900;
+  opacity: 0.72;
+  transition: background 160ms ease, opacity 160ms ease, transform 160ms ease;
+}
+
+.boboi-send-button.is-ready {
+  background: rgba(36, 87, 214, 0.94);
+  cursor: pointer;
+  opacity: 1;
+}
+
+.boboi-send-button.is-ready:hover {
+  background: rgba(29, 75, 192, 0.96);
+  transform: translateY(-1px);
+}
+
+@keyframes boboi-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(1deg);
+  }
+}
+
+@media (max-width: 520px) {
+  #boboi-root {
+    width: calc(100vw - 24px);
+  }
+
+  .boboi-character {
+    width: 108px;
+    height: 128px;
+  }
+}
